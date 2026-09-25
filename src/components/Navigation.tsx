@@ -15,6 +15,7 @@ interface NavigationProps {
   onOpenMemory: () => void;
   onOpenRules: () => void;
   onOpenIntent: () => void;
+  onOpenPreviews: () => void;
   accentColor: string;
   onOpenAccentPicker: () => void;
   networkMode: 'LOCAL' | 'NETWORK_REQUEST';
@@ -32,6 +33,7 @@ export const Navigation: React.FC<NavigationProps> = ({
   onOpenMemory,
   onOpenRules,
   onOpenIntent,
+  onOpenPreviews,
   accentColor,
   onOpenAccentPicker,
   networkMode,
@@ -144,6 +146,15 @@ export const Navigation: React.FC<NavigationProps> = ({
 
       {/* Right controls: Memory, Rules, History, Network boundary & Local Model */}
       <div className="flex items-center space-x-4">
+        {/* Previews button */}
+        <button
+          onClick={onOpenPreviews}
+          className="text-[#8A9099] hover:text-[#F2F3F5] transition-colors text-[11px] px-1.5 py-0.5 rounded border border-[#1C1F23] bg-[#0E1012] hover:bg-[#15181C]"
+          title="Interface Previews & Screenshots"
+        >
+          previews
+        </button>
+
         {/* Rules button */}
         <button
           onClick={onOpenRules}

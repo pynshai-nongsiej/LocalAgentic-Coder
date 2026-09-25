@@ -47,6 +47,7 @@ import { TaskHistoryDrawer } from './components/TaskHistoryDrawer';
 import { IntentPalette } from './components/IntentPalette';
 import { AccentPicker } from './components/AccentPicker';
 import { FailureRecoveryModal } from './components/FailureRecoveryModal';
+import { PreviewModal } from './components/PreviewModal';
 
 export default function App() {
   // Global Project & Theme State
@@ -58,6 +59,7 @@ export default function App() {
   const [isRulesOpen, setIsRulesOpen] = useState(false);
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [isIntentOpen, setIsIntentOpen] = useState(false);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false);
   const [isPermissionStripVisible, setIsPermissionStripVisible] = useState(true);
   const [networkMode, setNetworkMode] = useState<'LOCAL' | 'NETWORK_REQUEST'>('LOCAL');
 
@@ -175,6 +177,7 @@ export default function App() {
         if (isHistoryOpen) setIsHistoryOpen(false);
         if (isAccentPickerOpen) setIsAccentPickerOpen(false);
         if (isContextMapOpen) setIsContextMapOpen(false);
+        if (isPreviewModalOpen) setIsPreviewModalOpen(false);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -188,6 +191,7 @@ export default function App() {
     isHistoryOpen,
     isAccentPickerOpen,
     isContextMapOpen,
+    isPreviewModalOpen,
   ]);
 
   // Start Agent Task Execution
@@ -617,6 +621,7 @@ export default function App() {
         onOpenMemory={() => setIsMemoryOpen(true)}
         onOpenRules={() => setIsRulesOpen(true)}
         onOpenIntent={() => setIsIntentOpen(true)}
+        onOpenPreviews={() => setIsPreviewModalOpen(true)}
         accentColor={accentColor}
         onOpenAccentPicker={() => setIsAccentPickerOpen(true)}
         networkMode={networkMode}
@@ -858,6 +863,13 @@ export default function App() {
         onClose={() => setIsAccentPickerOpen(false)}
         currentAccent={accentColor}
         onChangeAccent={setAccentColor}
+      />
+
+      {/* Interface Preview Gallery */}
+      <PreviewModal
+        isOpen={isPreviewModalOpen}
+        onClose={() => setIsPreviewModalOpen(false)}
+        accentColor={accentColor}
       />
     </div>
   );
